@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/saichandar577/myfirstpipleine/_apis/build/status/saichandar95.chandu)](https://dev.azure.com/saichandar577/myfirstpipleine/_build/latest?definitionId=1)
 
 # Contributing
 
