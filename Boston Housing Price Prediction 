@@ -1,0 +1,171 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled0.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyME4SUjSisHx5ZOYxRMG8gM",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/saichandar95/chandu/blob/master/Boston%20Housing%20Price%20Prediction%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2xjpsiHQsDX-"
+      },
+      "source": [
+        "#import dependencies\n",
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "from sklearn import linear_model\n",
+        "from sklearn.model_selection import train_test_split"
+      ],
+      "execution_count": 28,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "hLd_MUIKtYky"
+      },
+      "source": [
+        "#load Boston Housing Data from sklearn.datasets and print it\n",
+        "from sklearn.datasets import load_boston\n",
+        "boston = load_boston()\n",
+        "print(boston)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3xQyNcn2uApH"
+      },
+      "source": [
+        "#transform the dataset into a data frame\n",
+        "#data = the data we want or the independent variables also known as the x variables\n",
+        "#feature names = the column names of the data\n",
+        "#target = the target variable or the price of the house or dependent variable also known as the y value\n",
+        "df_x=pd.DataFrame(boston.data, columns=boston.feature_names)\n",
+        "df_y=pd.DataFrame(boston.target)"
+      ],
+      "execution_count": 29,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2jCErK3Bzqc9"
+      },
+      "source": [
+        "#Get some statistics from out data\n",
+        "df_x.describe()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DFKUKdPfzx76"
+      },
+      "source": [
+        "#initialize the linear regression model\n",
+        "reg=linear_model.LinearRegression()"
+      ],
+      "execution_count": 21,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "e1wgXa0H0BSL"
+      },
+      "source": [
+        "#split the data into 67% training and 33%test \n",
+        "x_train, x_test, y_train, y_test= train_test_split(df_x, df_y, test_size = 0.33, random_state = 42)"
+      ],
+      "execution_count": 22,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3_Pa-UF602Kz"
+      },
+      "source": [
+        "#train the model with our training data\n",
+        "reg.fit(x_train, y_train)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "X0tiq0Hs1BgH"
+      },
+      "source": [
+        "#print the coefficients/weights for each feature/column of our model\n",
+        "print(reg.coef_)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Tx3Pmdd11MZw"
+      },
+      "source": [
+        "#print the predictions on our text data\n",
+        "y_pred=reg.predict(x_test)\n",
+        "print(y_pred)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "aKlBgH6z1a-f"
+      },
+      "source": [
+        "#print the actual values\n",
+        "print(y_test)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "UhofTxzH1hyX"
+      },
+      "source": [
+        "#check the model performance using MSE (Mean Squared Error)\n",
+        "print(np.mean((y_pred-y_test)**2))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
